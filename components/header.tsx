@@ -6,7 +6,7 @@ const lusitana = Lusitana({ weight: '400', subsets: ['latin'] });
 
 export default function Header() {
   return (
-    <header className="bg-zinc-950/95 text-zinc-50 flex items-center justify-between px-6 py-4 sticky top-0 z-10 backdrop-blur-sm">
+    <header className="bg-zinc-950/80 text-zinc-50 flex items-center justify-between px-6 py-4 sticky top-0 z-10 backdrop-blur-sm border-b-zinc-400 border-b-2">
       <Link
         href="/"
         className="flex gap-4 items-center"

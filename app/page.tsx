@@ -1,9 +1,7 @@
 import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
 import ServicesSection from '@/components/services-section';
-import ContactsSection from '@/components/contacts-section';
 import ReviewsSection from '@/components/reviews-section';
-import ReviewForm from '@/components/review-form';
 import Footer from '@/components/footer';
 
 export default function Home() {
@@ -14,7 +12,6 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <ReviewsSection />
-        <ContactsSection />
       </main>
       <Footer />
     </>

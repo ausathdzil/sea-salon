@@ -40,10 +40,10 @@ export default function ReviewForm() {
   }
 
   return (
-    <div className="bg-zinc-200 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
+    <div className="bg-zinc-50 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>Add Your Review Here</CardTitle>
+          <CardTitle>Tell us what you think!</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>

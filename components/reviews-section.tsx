@@ -47,21 +47,21 @@ export default async function ReviewsSection() {
   return (
     <section
       id="reviews"
-      className="bg-zinc-200 text-zinc-950 p-16 scroll-mt-12 w-full"
+      className="bg-zinc-50 text-zinc-950 p-8 sm:p-16 scroll-mt-12 w-full"
     >
-      <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-4">
+      <div className="flex flex-col-reverse justify-center items-center gap-8 px-16">
         <Carousel
           opts={{
             align: 'start',
             loop: true,
           }}
-          className="lg:w-1/2 w-full"
+          className="w-full"
         >
           <CarouselContent>
             {reviews.map((review, index) => (
               <CarouselItem
                 key={index}
-                className="lg:basis-1/2"
+                className="lg:basis-1/3 md:basis-1/2 sm:basis-2/3 basis-full"
               >
                 <Card>
                   <CardHeader className="flex flex-row items-start gap-4">
