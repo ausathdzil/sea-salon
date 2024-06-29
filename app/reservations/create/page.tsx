@@ -32,6 +32,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { services } from '@/components/services-section';
 import { cn } from '@/lib/utils';
+import { createReservation } from '@/app/lib/actions';
 
 const times = [
   '09:00 - 10:00',
@@ -63,6 +64,7 @@ export default function ReviewForm() {
       name: '',
       phone_number: '',
       service: '',
+      date: new Date(),
       time: '',
     },
   });
@@ -75,7 +77,12 @@ export default function ReviewForm() {
     formData.append('date', data.date.toISOString().split('T')[0]);
     formData.append('time', data.time);
 
-    console.log('Form data:', Object.fromEntries(formData));
+    try {
+      const response = await createReservation(formData);
+      form.reset();
+    } catch (error) {
+      console.error('Failed to create reservation:', error);
+    }
   }
 
   return (
