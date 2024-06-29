@@ -24,7 +24,11 @@ export default function Footer() {
       className="bg-zinc-900 text-zinc-50 w-full flex flex-col gap-4 justify-between items-center scroll-mt-12"
     >
       <div className="flex flex-col gap-8 justify-center items-center p-8">
-        <h1 className="text-center text-6xl font-bold">Get in touch with us</h1>
+        <h1 className="text-center text-6xl font-bold">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Get in touch with us
+          </span>{' '}
+        </h1>
         <div className="flex flex-col md:flex-row gap-4">
           {contacts.map((contact, index) => (
             <Card key={index}>

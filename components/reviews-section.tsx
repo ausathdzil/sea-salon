@@ -25,7 +25,7 @@ export default async function ReviewsSection() {
       id="reviews"
       className="bg-zinc-50 text-zinc-950 p-8 sm:p-16 scroll-mt-12 w-full"
     >
-      <div className="flex flex-col-reverse justify-center items-center gap-8 px-16">
+      <div className="flex flex-col-reverse justify-center items-center gap-8 sm:px-16">
         <Carousel
           opts={{
             align: 'start',
@@ -76,10 +76,14 @@ export default async function ReviewsSection() {
           <CarouselNext />
         </Carousel>
         <h1 className="text-6xl text-center md:text-right font-bold">
-          What Our Clients Say
+          What Our{' '}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Clients
+          </span>{' '}
+          Say
         </h1>
       </div>
-      <ReviewForm reviews={reviews} />
+      <ReviewForm />
     </section>
   );
 }

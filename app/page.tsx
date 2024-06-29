@@ -7,13 +7,9 @@ import Footer from '@/components/footer';
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex flex-col items-center justify-between w-full">
-        <HeroSection />
-        <ServicesSection />
-        <ReviewsSection />
-      </main>
-      <Footer />
+      <HeroSection />
+      <ServicesSection />
+      <ReviewsSection />
     </>
   );
 }

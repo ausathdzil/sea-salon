@@ -11,7 +11,7 @@ import { Button } from './ui/button';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
-const services = [
+export const services = [
   {
     icon: ScissorsIcon,
     title: 'Haircuts and Styling',
@@ -35,10 +35,15 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="flex flex-col gap-8 items-end justify-center p-12 w-full scroll-mt-12"
+      className="flex flex-col gap-8 items-center lg:items-end justify-center p-12 w-full scroll-mt-12"
     >
-      <div className="flex flex-col lg:flex-row items-center">
-        <h1 className="text-6xl font-bold">Available Services</h1>
+      <div className="flex flex-col lg:flex-row gap-8 items-center">
+        <h1 className="text-6xl font-bold">
+          Available{' '}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+            Services
+          </span>
+        </h1>
         <div className="flex flex-col md:flex-row gap-4">
           {services.map((service, index) => (
             <Card
@@ -58,7 +63,7 @@ export default function ServicesSection() {
       </div>
       <Button>
         <Link
-          href="/reservation/create"
+          href="/reservations/create"
           className="flex gap-4 items-center"
         >
           <p>Create a reservation</p>

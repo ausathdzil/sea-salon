@@ -18,7 +18,6 @@ import { Input } from './ui/input';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Textarea } from './ui/textarea';
 import { createReview } from '@/app/lib/actions';
-import { Reviews } from '@/app/lib/definitions';
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -26,7 +25,7 @@ const formSchema = z.object({
   comment: z.string().min(2).max(500),
 });
 
-export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
+export default function ReviewForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,7 +35,7 @@ export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
     },
   });
 
-  const handleSubmit = form.handleSubmit(async (data) => {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('rating', data.rating.toString());
@@ -48,7 +47,7 @@ export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
     } catch (error) {
       console.error('Failed to create review:', error);
     }
-  });
+  }
 
   return (
     <div className="bg-zinc-50 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
@@ -59,7 +58,7 @@ export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
         <CardContent>
           <Form {...form}>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-4"
             >
               <FormField
@@ -87,9 +86,7 @@ export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
                     <FormControl>
                       <RadioGroup
                         onValueChange={(value) => field.onChange(Number(value))}
-                        defaultValue={
-                          field.value.toString() as '1' | '2' | '3' | '4' | '5'
-                        }
+                        defaultValue={field.value.toString()}
                         className="flex flex-col lg:flex-row gap-4"
                       >
                         {[1, 2, 3, 4, 5].map((rating) => (
@@ -98,16 +95,7 @@ export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
                             className="flex items-end"
                           >
                             <FormControl>
-                              <RadioGroupItem
-                                value={
-                                  rating.toString() as
-                                    | '1'
-                                    | '2'
-                                    | '3'
-                                    | '4'
-                                    | '5'
-                                }
-                              >
+                              <RadioGroupItem value={rating.toString()}>
                                 {rating}
                               </RadioGroupItem>
                             </FormControl>
