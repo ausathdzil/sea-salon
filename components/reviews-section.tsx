@@ -1,3 +1,4 @@
+import { fetchReviews } from '@/app/lib/data';
 import {
   Card,
   CardDescription,
@@ -16,34 +17,9 @@ import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
 import ReviewForm from './review-form';
 
-const reviews = [
-  {
-    name: 'John Doe',
-    rating: 5,
-    comment:
-      'I love the service! The staff are very friendly and professional.',
-  },
-  {
-    name: 'Ausath Ikram',
-    rating: 4,
-    comment:
-      'The service is great. I will definitely come back for more treatments.',
-  },
-  {
-    name: 'Jane Doe',
-    rating: 5,
-    comment:
-      'The staff are very friendly and professional. I love the service!',
-  },
-  {
-    name: 'Sekar',
-    rating: 5,
-    comment:
-      'I love the service! The staff are very friendly and professional.',
-  },
-];
-
 export default async function ReviewsSection() {
+  const reviews = await fetchReviews();
+
   return (
     <section
       id="reviews"
@@ -99,9 +75,11 @@ export default async function ReviewsSection() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        <h1 className="text-6xl text-center md:text-right font-bold">What Our Clients Say</h1>
+        <h1 className="text-6xl text-center md:text-right font-bold">
+          What Our Clients Say
+        </h1>
       </div>
-      <ReviewForm />
+      <ReviewForm reviews={reviews} />
     </section>
   );
 }

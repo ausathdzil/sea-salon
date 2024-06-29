@@ -17,6 +17,8 @@ import {
 import { Input } from './ui/input';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Textarea } from './ui/textarea';
+import { createReview } from '@/app/lib/actions';
+import { Reviews } from '@/app/lib/definitions';
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -24,7 +26,7 @@ const formSchema = z.object({
   comment: z.string().min(2).max(500),
 });
 
-export default function ReviewForm() {
+export default function ReviewForm({ reviews }: { reviews: Reviews[] }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,10 +36,19 @@ export default function ReviewForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    form.reset();
-  }
+  const handleSubmit = form.handleSubmit(async (data) => {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('rating', data.rating.toString());
+    formData.append('comment', data.comment);
+
+    try {
+      const response = await createReview(formData);
+      form.reset();
+    } catch (error) {
+      console.error('Failed to create review:', error);
+    }
+  });
 
   return (
     <div className="bg-zinc-50 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
@@ -48,7 +59,7 @@ export default function ReviewForm() {
         <CardContent>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={handleSubmit}
               className="space-y-4"
             >
               <FormField
