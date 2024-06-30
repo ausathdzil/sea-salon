@@ -18,6 +18,7 @@ import { Input } from './ui/input';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Textarea } from './ui/textarea';
 import { createReview } from '@/app/lib/actions';
+import { StarIcon } from '@heroicons/react/24/solid';
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -92,14 +93,20 @@ export default function ReviewForm() {
                         {[1, 2, 3, 4, 5].map((rating) => (
                           <FormItem
                             key={rating}
-                            className="flex items-end"
+                            className="flex items-end justify-start"
                           >
                             <FormControl>
                               <RadioGroupItem value={rating.toString()}>
                                 {rating}
                               </RadioGroupItem>
                             </FormControl>
-                            <FormLabel className="ml-2">{rating} ⭐</FormLabel>
+                            <FormLabel className="ml-2 flex gap-2 items-end">
+                              {rating}{' '}
+                              <StarIcon
+                                fill="orange"
+                                className="w-4 h-4"
+                              />
+                            </FormLabel>
                           </FormItem>
                         ))}
                       </RadioGroup>

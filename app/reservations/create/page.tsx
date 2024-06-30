@@ -86,10 +86,10 @@ export default function ReviewForm() {
   }
 
   return (
-    <div className="bg-zinc-50 text-zinc-950 py-8 px-24 flex flex-col justify-start w-full items-start gap-4">
-      <Card className="w-full">
+    <div className="bg-zinc-50 text-zinc-950 py-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
+      <Card className="lg:w-full">
         <CardHeader>
-          <CardTitle className="text-5xl">Book a Reservation</CardTitle>
+          <CardTitle className="sm:text-5xl">Book a Reservation</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>

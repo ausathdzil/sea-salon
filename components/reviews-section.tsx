@@ -25,7 +25,7 @@ export default async function ReviewsSection() {
       id="reviews"
       className="bg-zinc-50 text-zinc-950 p-8 sm:p-16 scroll-mt-12 w-full"
     >
-      <div className="flex flex-col-reverse justify-center items-center gap-8 sm:px-16">
+      <div className="flex flex-col-reverse justify-center items-center gap-8 px-6 sm:px-16">
         <Carousel
           opts={{
             align: 'start',
@@ -41,7 +41,7 @@ export default async function ReviewsSection() {
               >
                 <Card>
                   <CardHeader className="flex flex-row items-start gap-4">
-                    <Avatar>
+                    <Avatar className='hidden sm:block'>
                       <AvatarFallback>{review.name[0]}</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col gap-2 items-start">
