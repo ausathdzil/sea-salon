@@ -53,13 +53,16 @@ const times = [
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Name is required.' }).max(50),
-  phone_number: z.string().min(1, { message: 'Phone number is required.' }).max(50),
+  phone_number: z
+    .string()
+    .min(1, { message: 'Phone number is required.' })
+    .max(50),
   service: z.string().min(1, { message: 'Service is required.' }).max(500),
   date: z.date(),
   time: z.string().min(1, { message: 'Time is required.' }).max(500),
 });
 
-export default function ReviewForm() {
+export default function ReservationForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -91,11 +94,11 @@ export default function ReviewForm() {
     <div className="bg-zinc-50 text-zinc-950 py-24 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
       <Card className="lg:w-full border-2 border-pink-500">
         <CardHeader className="flex flex-row gap-4 justify-start items-end">
-          <Button>
-            <Link href="/">
+          <Link href="/">
+            <Button>
               <ArrowLeftIcon className="w-6 h-6" />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <CardTitle className="sm:text-4xl">
             Create a{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">

@@ -61,15 +61,15 @@ export default function ServicesSection() {
           ))}
         </div>
       </div>
-      <Button>
-        <Link
-          href="/reservations/create"
-          className="flex gap-4 items-center"
-        >
+      <Link
+        href="/reservations/create"
+        className="flex gap-4 items-center"
+      >
+        <Button>
           <p>Create a reservation</p>
           <ArrowRightIcon className="w-6 h-6" />
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </section>
   );
 }
