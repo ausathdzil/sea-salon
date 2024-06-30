@@ -88,7 +88,7 @@ export default function ReviewForm() {
   }
 
   return (
-    <div className="bg-zinc-50 text-zinc-950 py-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
+    <div className="bg-zinc-50 text-zinc-950 py-24 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
       <Card className="lg:w-full border-2 border-pink-500">
         <CardHeader className="flex flex-row gap-4 justify-start items-end">
           <Button>
