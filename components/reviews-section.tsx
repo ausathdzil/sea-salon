@@ -39,7 +39,7 @@ export default async function ReviewsSection() {
                 key={index}
                 className="lg:basis-1/3 md:basis-1/2 sm:basis-2/3 basis-full"
               >
-                <Card>
+                <Card className='border-2 border-orange-300'>
                   <CardHeader className="flex flex-row items-start gap-4">
                     <Avatar className='hidden sm:block'>
                       <AvatarFallback>{review.name[0]}</AvatarFallback>

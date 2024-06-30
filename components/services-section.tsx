@@ -48,11 +48,11 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="shadow-lg border-zinc-950 border-2"
+              className="shadow-lg border-pink-500 border-2"
             >
               <CardHeader className="gap-4">
                 <service.icon className="w-12 h-12" />
-                <CardTitle>{service.title}</CardTitle>
+                <CardTitle className="text-pink-500">{service.title}</CardTitle>
                 <CardDescription className="text-base">
                   {service.description}
                 </CardDescription>

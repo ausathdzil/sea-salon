@@ -33,6 +33,8 @@ import { Calendar } from '@/components/ui/calendar';
 import { services } from '@/components/services-section';
 import { cn } from '@/lib/utils';
 import { createReservation } from '@/app/lib/actions';
+import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 const times = [
   '09:00 - 10:00',
@@ -50,11 +52,11 @@ const times = [
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
-  phone_number: z.string().min(2).max(50),
-  service: z.string().min(2).max(500),
+  name: z.string().min(1, { message: 'Name is required.' }).max(50),
+  phone_number: z.string().min(1, { message: 'Phone number is required.' }).max(50),
+  service: z.string().min(1, { message: 'Service is required.' }).max(500),
   date: z.date(),
-  time: z.string().min(2).max(500),
+  time: z.string().min(1, { message: 'Time is required.' }).max(500),
 });
 
 export default function ReviewForm() {
@@ -64,7 +66,7 @@ export default function ReviewForm() {
       name: '',
       phone_number: '',
       service: '',
-      date: new Date(),
+      date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
       time: '',
     },
   });
@@ -87,9 +89,19 @@ export default function ReviewForm() {
 
   return (
     <div className="bg-zinc-50 text-zinc-950 py-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
-      <Card className="lg:w-full">
-        <CardHeader>
-          <CardTitle className="sm:text-5xl">Book a Reservation</CardTitle>
+      <Card className="lg:w-full border-2 border-pink-500">
+        <CardHeader className="flex flex-row gap-4 justify-start items-end">
+          <Button>
+            <Link href="/">
+              <ArrowLeftIcon className="w-6 h-6" />
+            </Link>
+          </Button>
+          <CardTitle className="sm:text-4xl">
+            Create a{' '}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+              Reservation
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>

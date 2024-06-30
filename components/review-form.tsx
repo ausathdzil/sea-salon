@@ -21,9 +21,9 @@ import { createReview } from '@/app/lib/actions';
 import { StarIcon } from '@heroicons/react/24/solid';
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
+  name: z.string().min(1, { message: 'Name is required.' }).max(50),
   rating: z.number().int().min(1).max(5),
-  comment: z.string().min(2).max(500),
+  comment: z.string().min(1, { message: 'Comment is required.' }).max(500),
 });
 
 export default function ReviewForm() {
@@ -52,7 +52,7 @@ export default function ReviewForm() {
 
   return (
     <div className="bg-zinc-50 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
-      <Card className="w-full">
+      <Card className="w-full border-2 border-pink-500">
         <CardHeader>
           <CardTitle>Tell us what you think!</CardTitle>
         </CardHeader>
