@@ -246,7 +246,12 @@ export default function ReservationForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button
+                type="submit"
+                className="text-lg"
+              >
+                Submit
+              </Button>
             </form>
           </Form>
         </CardContent>

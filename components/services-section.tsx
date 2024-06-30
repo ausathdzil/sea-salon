@@ -66,8 +66,8 @@ export default function ServicesSection() {
         className="flex gap-4 items-center"
       >
         <Button>
-          <p>Create a reservation</p>
-          <ArrowRightIcon className="w-6 h-6" />
+          <p className='text-lg'>Create a reservation</p>
+          <ArrowRightIcon className="ml-2 w-6 h-6" />
         </Button>
       </Link>
     </section>
