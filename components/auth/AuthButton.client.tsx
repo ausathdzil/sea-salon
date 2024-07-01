@@ -57,7 +57,7 @@ export default function AuthButton() {
                 Sign Out
               </Button>
             </DialogTrigger>
-            <DialogContent className=" max-w-72">
+            <DialogContent className="max-w-72">
               <DialogHeader>
                 <DialogTitle>Sign Out</DialogTitle>
                 <DialogDescription>

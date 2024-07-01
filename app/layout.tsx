@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} flex flex-col justify-center items-center`}
       >
-        <main className="flex flex-col items-center justify-between w-full">
+        <main className="flex flex-col items-center justify-between w-full min-h-[90vh]">
           {children}
         </main>
         <Footer />

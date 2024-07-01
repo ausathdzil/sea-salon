@@ -9,7 +9,7 @@ import { KeyIcon } from '@heroicons/react/24/outline';
 
 export default function Page() {
   return (
-    <div className="bg-zinc-50 text-zinc-950 p-12 px-8 sm:px-24 flex flex-col justify-center w-full min-h-[80vh] items-center gap-4">
+    <div className="bg-zinc-50 text-zinc-950 p-12 px-8 sm:px-24 flex flex-col justify-center items-center gap-4 w-full h-screen max-h-[90vh]">
       <Card className="w-full sm:w-2/3 lg:w-1/2 border-2 border-pink-500">
         <CardHeader className="flex flex-row gap-4 justify-start items-center">
           <Link href="/">
