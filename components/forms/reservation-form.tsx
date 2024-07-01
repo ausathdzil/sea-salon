@@ -71,8 +71,8 @@ export default function ReservationForm() {
     try {
       startTransition(async () => {
         await createReservation(formData);
+        form.reset();
       });
-      form.reset();
     } catch (error) {
       console.error('Failed to create reservation:', error);
     }
@@ -227,7 +227,7 @@ export default function ReservationForm() {
         />
         <Button
           type="submit"
-          className="text-lg"
+          className="text-base"
           disabled={isPending}
         >
           Submit

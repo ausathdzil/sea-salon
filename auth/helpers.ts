@@ -3,7 +3,7 @@
 import { signIn as naSignIn, signOut as naSignOut } from '.';
 
 export async function signIn() {
-  await naSignIn();
+  await naSignIn('Credentials', { redirectTo: '/' });
 }
 
 export async function signOut() {

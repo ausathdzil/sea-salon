@@ -1,8 +1,9 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useTransition } from 'react';
 import { createReview } from '@/lib/actions';
 
 import {
@@ -26,6 +27,8 @@ const formSchema = z.object({
 });
 
 export default function ReviewForm() {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,8 +45,10 @@ export default function ReviewForm() {
     formData.append('comment', data.comment);
 
     try {
-      const response = await createReview(formData);
-      form.reset();
+      startTransition(async () => {
+        await createReview(formData);
+        form.reset();
+      });
     } catch (error) {
       console.error('Failed to create review:', error);
     }
@@ -63,7 +68,9 @@ export default function ReviewForm() {
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
+                  type="text"
                   placeholder="Input your name"
+                  disabled={isPending}
                   {...field}
                 />
               </FormControl>
@@ -82,6 +89,7 @@ export default function ReviewForm() {
                   onValueChange={(value) => field.onChange(Number(value))}
                   defaultValue={field.value.toString()}
                   className="flex flex-col lg:flex-row gap-4"
+                  disabled={isPending}
                 >
                   {[1, 2, 3, 4, 5].map((rating) => (
                     <FormItem
@@ -117,6 +125,7 @@ export default function ReviewForm() {
               <FormControl>
                 <Textarea
                   placeholder="Write your review here"
+                  disabled={isPending}
                   {...field}
                 />
               </FormControl>
@@ -126,7 +135,8 @@ export default function ReviewForm() {
         />
         <Button
           type="submit"
-          className="text-lg"
+          className="text-base"
+          disabled={isPending}
         >
           Submit
         </Button>

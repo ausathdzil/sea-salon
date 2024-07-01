@@ -5,7 +5,6 @@ import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
-import { getCsrfToken } from 'next-auth/react';
 
 const ReviewSchema = z.object({
   id: z.string(),

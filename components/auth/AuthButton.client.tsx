@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
-import { signIn, signOut } from '@/auth/helpers';
+import { signOut } from '@/auth/helpers';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -96,14 +96,12 @@ export default function AuthButton() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          <Button
+          <Link
+            href="/signin"
             className="w-full"
-            onClick={async () => {
-              await signIn();
-            }}
           >
-            Sign In
-          </Button>
+            <Button className="w-full">Sign In</Button>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

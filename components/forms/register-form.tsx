@@ -53,8 +53,8 @@ export default function RegisterForm() {
     try {
       startTransition(async () => {
         await createUser(formData);
+        form.reset();
       });
-      form.reset();
     } catch (error) {
       console.error('Failed to create user:', error);
     }
@@ -141,7 +141,7 @@ export default function RegisterForm() {
         <div className="flex flex-col gap-4">
           <Button
             type="submit"
-            className="w-full"
+            className="w-full text-base"
             disabled={isPending}
           >
             Register

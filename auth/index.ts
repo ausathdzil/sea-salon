@@ -35,9 +35,6 @@ const authOptions: NextAuthConfig = {
       },
     }),
   ],
-  // pages: {
-  //   signIn: '/signin',
-  // },
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
 };
