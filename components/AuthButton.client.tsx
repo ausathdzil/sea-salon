@@ -80,12 +80,17 @@ export default function AuthButton() {
           </Button>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Button
-            variant="outline"
-            className="w-full text-pink-500 border-pink-500 hover:text-pink-600"
+          <Link
+            href="/register"
+            className="w-full"
           >
-            <Link href="/register">Register</Link>
-          </Button>
+            <Button
+              variant="outline"
+              className="w-full text-pink-500 border-pink-500 hover:text-pink-600"
+            >
+              Register
+            </Button>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,5 +1,6 @@
 import NextAuth, { User, NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { fetchUsers } from '@/lib/data';
 
 export const BASE_PATH = '/api/auth';
 
@@ -20,14 +21,7 @@ const authOptions: NextAuthConfig = {
         },
       },
       async authorize(credentials): Promise<User | null> {
-        const users = [
-          {
-            id: '1',
-            name: 'John Doe',
-            email: 'johndoe@mail.com',
-            password: 'password',
-          },
-        ];
+        const users = await fetchUsers();
 
         const user = users.find(
           (user) =>
