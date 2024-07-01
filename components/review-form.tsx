@@ -17,7 +17,7 @@ import {
 import { Input } from './ui/input';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Textarea } from './ui/textarea';
-import { createReview } from '@/app/lib/actions';
+import { createReview } from '@/lib/actions';
 import { StarIcon } from '@heroicons/react/24/solid';
 
 const formSchema = z.object({

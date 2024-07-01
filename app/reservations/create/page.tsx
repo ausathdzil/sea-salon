@@ -32,7 +32,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { services } from '@/components/services-section';
 import { cn } from '@/lib/utils';
-import { createReservation } from '@/app/lib/actions';
+import { createReservation } from '@/lib/actions';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
@@ -91,13 +91,11 @@ export default function ReservationForm() {
   }
 
   return (
-    <div className="bg-zinc-50 text-zinc-950 py-24 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
+    <div className="bg-zinc-50 text-zinc-950 pt-24 pb-12 px-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
       <Card className="lg:w-full border-2 border-pink-500">
-        <CardHeader className="flex flex-row gap-4 justify-start items-end">
+        <CardHeader className="flex flex-row gap-4 justify-start items-center">
           <Link href="/">
-            <Button>
-              <ArrowLeftIcon className="w-6 h-6" />
-            </Button>
+            <ArrowLeftIcon className="w-6 h-6 hover:scale-110 hover:stroke-pink-500 transition ease-in-out" />
           </Link>
           <CardTitle className="sm:text-4xl">
             Create a{' '}
