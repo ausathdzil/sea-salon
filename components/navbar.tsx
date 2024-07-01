@@ -15,7 +15,7 @@ export default async function Navbar() {
         <ScissorsIcon className="w-6 h-6" />
         <h1 className="font-bold text-2xl">SEA Salon</h1>
       </Link>
-      <AuthButton />
+      {/* <AuthButton /> */}
     </div>
   );
 }

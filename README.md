@@ -10,6 +10,7 @@ A salon web application as part of [COMPFEST Academy](https://compfest.id/academ
 - [tailwindcss](https://github.com/tailwindlabs/tailwindcss)
 - [shadcn-ui](https://github.com/shadcn-ui/ui)
 - [vercel postgres](https://github.com/vercel/storage)
+- [auth.js](https://github.com/nextauthjs/next-auth)
 - [zod](https://github.com/colinhacks/zod)
 
 
