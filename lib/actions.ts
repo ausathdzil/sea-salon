@@ -141,8 +141,6 @@ const LoginSchema = z.object({
 });
 
 export async function login(formData: FormData) {
-  const csrfToken = await getCsrfToken();
-
   const validatedFields = LoginSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -161,7 +159,6 @@ export async function login(formData: FormData) {
     await signIn('credentials', {
       email,
       password,
-      csrfToken,
       redirect: false,
     });
   } catch (error) {

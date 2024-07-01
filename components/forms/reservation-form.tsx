@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTransition } from 'react';
 import { createReservation } from '@/lib/actions';
 
 import {
@@ -22,7 +23,11 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { services as services } from '@/lib/data';
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -42,6 +47,8 @@ const formSchema = z.object({
 });
 
 export default function ReservationForm() {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,7 +69,9 @@ export default function ReservationForm() {
     formData.append('time', data.time);
 
     try {
-      const response = await createReservation(formData);
+      startTransition(async () => {
+        await createReservation(formData);
+      });
       form.reset();
     } catch (error) {
       console.error('Failed to create reservation:', error);
@@ -83,7 +92,9 @@ export default function ReservationForm() {
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
+                  type="text"
                   placeholder="Input your name"
+                  disabled={isPending}
                   {...field}
                 />
               </FormControl>
@@ -99,7 +110,9 @@ export default function ReservationForm() {
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
                 <Input
+                  type="text"
                   placeholder="Input your phone number"
+                  disabled={isPending}
                   {...field}
                 />
               </FormControl>
@@ -116,6 +129,7 @@ export default function ReservationForm() {
               <Select
                 onValueChange={field.onChange}
                 defaultValue={field.value}
+                disabled={isPending}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -147,6 +161,7 @@ export default function ReservationForm() {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      disabled={isPending}
                       variant={'outline'}
                       className={cn(
                         'w-full pl-3 text-left font-normal',
@@ -188,6 +203,7 @@ export default function ReservationForm() {
               <Select
                 onValueChange={field.onChange}
                 defaultValue={field.value}
+                disabled={isPending}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -212,6 +228,7 @@ export default function ReservationForm() {
         <Button
           type="submit"
           className="text-lg"
+          disabled={isPending}
         >
           Submit
         </Button>
