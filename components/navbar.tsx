@@ -1,7 +1,7 @@
 import { auth } from '@/auth';
 import { ScissorsIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import AuthButton from '@/app/AuthButton.server';
+import AuthButton from './AuthButton.server';
 
 export default async function Navbar() {
   const session = await auth();
