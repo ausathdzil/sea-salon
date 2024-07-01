@@ -4,6 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardContent,
 } from '@/components/ui/card';
 import {
   Carousel,
@@ -12,10 +13,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Avatar, AvatarFallback } from './ui/avatar';
+import { Avatar, AvatarFallback } from '../ui/avatar';
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
-import ReviewForm from './review-form';
+import ReviewForm from '@/components/forms/review-form';
 
 export default async function ReviewsSection() {
   const reviews = await fetchReviews();
@@ -80,7 +81,16 @@ export default async function ReviewsSection() {
           Say
         </h1>
       </div>
-      <ReviewForm />
+      <div className="bg-zinc-50 text-zinc-950 pt-12 flex flex-col justify-start w-full items-start gap-4">
+        <Card className="w-full border-2 border-pink-500">
+          <CardHeader>
+            <CardTitle>Tell us what you think!</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ReviewForm />
+          </CardContent>
+        </Card>
+      </div>
     </section>
   );
 }

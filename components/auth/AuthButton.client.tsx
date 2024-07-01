@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '../ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@radix-ui/react-avatar';
 import { UserCircle } from 'lucide-react';
 import Link from 'next/link';

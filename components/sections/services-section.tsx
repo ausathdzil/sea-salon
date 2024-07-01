@@ -1,35 +1,13 @@
+import { services as services } from '@/lib/data';
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ScissorsIcon } from '@heroicons/react/24/outline';
-import { HandRaisedIcon } from '@heroicons/react/24/outline';
-import { FaceSmileIcon } from '@heroicons/react/24/outline';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
-
-export const services = [
-  {
-    icon: ScissorsIcon,
-    title: 'Haircuts and Styling',
-    description: 'Experience our expert stylists touch for a perfect haircut.',
-  },
-  {
-    icon: HandRaisedIcon,
-    title: 'Manicures and Pedicures',
-    description:
-      'Indulge in our luxurious nail treatments for beautiful hands and feet.',
-  },
-  {
-    icon: FaceSmileIcon,
-    title: 'Facial Treatments',
-    description:
-      'Rejuvenate your skin with our rejuvenating facial treatments.',
-  },
-];
 
 export default function ServicesSection() {
   return (
