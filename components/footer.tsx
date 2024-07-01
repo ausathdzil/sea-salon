@@ -19,10 +19,7 @@ const contacts = [
 
 export default function Footer() {
   return (
-    <footer
-      id="contacts"
-      className="bg-zinc-900 text-zinc-50 w-full flex flex-col gap-4 justify-between items-center scroll-mt-12"
-    >
+    <footer className="bg-zinc-900 text-zinc-50 w-full flex flex-col">
       <div className="flex flex-col gap-8 justify-center items-center p-8">
         <h1 className="text-center text-6xl font-bold">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">

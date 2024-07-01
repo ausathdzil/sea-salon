@@ -21,10 +21,7 @@ export default async function ReviewsSection() {
   const reviews = await fetchReviews();
 
   return (
-    <section
-      id="reviews"
-      className="bg-zinc-50 text-zinc-950 p-8 sm:p-16 scroll-mt-12 w-full"
-    >
+    <section className="bg-zinc-50 text-zinc-950 p-8 sm:p-16 w-full">
       <div className="flex flex-col-reverse justify-center items-center gap-8 px-6 sm:px-16">
         <Carousel
           opts={{

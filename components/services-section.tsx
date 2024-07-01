@@ -33,10 +33,7 @@ export const services = [
 
 export default function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="flex flex-col gap-8 items-center lg:items-end justify-center p-12 w-full scroll-mt-12"
-    >
+    <section className="flex flex-col gap-8 items-center lg:items-end justify-center p-12 w-full">
       <div className="flex flex-col lg:flex-row gap-8 items-center">
         <h1 className="text-6xl font-bold">
           Available{' '}
@@ -66,7 +63,7 @@ export default function ServicesSection() {
         className="flex gap-4 items-center"
       >
         <Button>
-          <p className='text-lg'>Create a reservation</p>
+          <p className="text-lg">Create a reservation</p>
           <ArrowRightIcon className="ml-2 w-6 h-6" />
         </Button>
       </Link>

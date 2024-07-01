@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import './globals.css';
-import Header from '@/components/header';
 import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
@@ -17,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.className} flex flex-col justify-center items-center`}>
-        <Header />
         <main className="flex flex-col items-center justify-between w-full">
           {children}
         </main>
@@ -26,4 +24,3 @@ export default function RootLayout({
     </html>
   );
 }
-
