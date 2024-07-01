@@ -11,9 +11,13 @@ const authOptions: NextAuthConfig = {
         email: {
           label: 'Email',
           type: 'email',
-          placeholder: 'johndoe@mail.com',
+          placeholder: 'Enter your email',
         },
-        password: { label: 'Password', type: 'password' },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: '•••••••••••••',
+        },
       },
       async authorize(credentials): Promise<User | null> {
         const users = [
