@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { signIn } from '@/auth';
+import { getCsrfToken } from 'next-auth/react';
 
 const ReviewSchema = z.object({
   id: z.string(),
@@ -131,4 +133,40 @@ export async function createUser(formData: FormData) {
 
   revalidatePath('/');
   redirect('/');
+}
+
+const LoginSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export async function login(formData: FormData) {
+  const csrfToken = await getCsrfToken();
+
+  const validatedFields = LoginSchema.safeParse({
+    email: formData.get('email'),
+    password: formData.get('password'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Login.',
+    };
+  }
+
+  const { email, password } = validatedFields.data;
+
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      csrfToken,
+      redirect: false,
+    });
+  } catch (error) {
+    return {
+      message: 'Database error: Failed to login.',
+    };
+  }
 }

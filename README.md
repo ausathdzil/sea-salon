@@ -21,6 +21,7 @@ A salon web application as part of [COMPFEST Academy](https://compfest.id/academ
 
 ## Features
 
+- User authentication
 - Reviews section
 - Reservation system
 

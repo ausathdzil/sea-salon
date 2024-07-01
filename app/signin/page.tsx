@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-import RegisterForm from '@/components/forms/register-form';
+import SignInForm from '@/components/forms/signin-form';
 
 export default function Page() {
   return (
@@ -12,14 +12,13 @@ export default function Page() {
             <ArrowLeftIcon className="w-6 h-6 hover:scale-110 hover:stroke-pink-500 transition ease-in-out" />
           </Link>
           <CardTitle className="sm:text-4xl">
-            Create an{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
-              Account
+              Sign In
             </span>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <RegisterForm />
+          <SignInForm />
         </CardContent>
       </Card>
     </div>

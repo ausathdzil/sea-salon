@@ -12,12 +12,12 @@ const authOptions: NextAuthConfig = {
         email: {
           label: 'Email',
           type: 'email',
-          placeholder: 'Enter your email',
+          placeholder: 'Input your email',
         },
         password: {
           label: 'Password',
           type: 'password',
-          placeholder: '•••••••••••••',
+          placeholder: 'Input your password',
         },
       },
       async authorize(credentials): Promise<User | null> {
@@ -35,6 +35,9 @@ const authOptions: NextAuthConfig = {
       },
     }),
   ],
+  // pages: {
+  //   signIn: '/signin',
+  // },
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
 };

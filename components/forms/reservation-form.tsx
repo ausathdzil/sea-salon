@@ -83,7 +83,7 @@ export default function ReservationForm() {
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter your name"
+                  placeholder="Input your name"
                   {...field}
                 />
               </FormControl>
@@ -99,7 +99,7 @@ export default function ReservationForm() {
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter your phone number"
+                  placeholder="Input your phone number"
                   {...field}
                 />
               </FormControl>
@@ -184,14 +184,14 @@ export default function ReservationForm() {
           name="time"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Time</FormLabel>
+              <FormLabel>Session</FormLabel>
               <Select
                 onValueChange={field.onChange}
                 defaultValue={field.value}
               >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select time" />
+                    <SelectValue placeholder="Select session" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

@@ -63,7 +63,7 @@ export default function ReviewForm() {
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter your name"
+                  placeholder="Input your name"
                   {...field}
                 />
               </FormControl>
