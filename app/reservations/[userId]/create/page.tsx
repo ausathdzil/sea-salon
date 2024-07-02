@@ -1,9 +1,13 @@
+import { fetchUser } from '@/lib/data';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import ReservationForm from '@/components/forms/reservation-form';
 
-export default function Page() {
+export default async function Page({ params }: { params: { userId: string } }) {
+  const id = params.userId;
+  const user = await fetchUser(id);
+
   return (
     <div className="bg-zinc-50 text-zinc-950 p-12 px-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
       <Card className="lg:w-full border-2 border-pink-500">
@@ -19,7 +23,7 @@ export default function Page() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ReservationForm />
+          <ReservationForm userId={user.id} />
         </CardContent>
       </Card>
     </div>

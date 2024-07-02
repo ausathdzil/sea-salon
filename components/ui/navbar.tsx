@@ -12,8 +12,8 @@ export default async function Navbar() {
         href="/"
         className="flex gap-4 items-center"
       >
-        <ScissorsIcon className="w-6 h-6" />
-        <h1 className="font-bold text-2xl">SEA Salon</h1>
+        <ScissorsIcon className="hidden sm:block w-6 h-6" />
+        <h1 className="font-bold sm:text-2xl mr-2">SEA Salon</h1>
       </Link>
       <AuthButton />
     </div>

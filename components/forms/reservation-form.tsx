@@ -43,10 +43,11 @@ const formSchema = z.object({
     .max(50),
   service: z.string().min(1, { message: 'Service is required.' }).max(500),
   date: z.date(),
-  time: z.string().min(1, { message: 'Time is required.' }).max(500),
+  session: z.string().min(1, { message: 'Session is required.' }).max(500),
+  user_id: z.string(),
 });
 
-export default function ReservationForm() {
+export default function ReservationForm( { userId }: { userId: string | undefined } ) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,7 +57,8 @@ export default function ReservationForm() {
       phone_number: '',
       service: '',
       date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-      time: '',
+      session: '',
+      user_id: userId ?? '',
     },
   });
 
@@ -66,7 +68,8 @@ export default function ReservationForm() {
     formData.append('phone_number', data.phone_number);
     formData.append('service', data.service);
     formData.append('date', data.date.toISOString().split('T')[0]);
-    formData.append('time', data.time);
+    formData.append('session', data.session);
+    formData.append('user_id', userId ?? '');
 
     try {
       startTransition(async () => {
@@ -196,7 +199,7 @@ export default function ReservationForm() {
         />
         <FormField
           control={form.control}
-          name="time"
+          name="session"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Session</FormLabel>

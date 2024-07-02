@@ -32,9 +32,9 @@ export default async function ReviewsSection() {
           className="w-full"
         >
           <CarouselContent>
-            {reviews.map((review, index) => (
+            {reviews.map((review) => (
               <CarouselItem
-                key={index}
+                key={review.id}
                 className="lg:basis-1/3 md:basis-1/2 sm:basis-2/3 basis-full"
               >
                 <Card className="border-2 border-orange-300">

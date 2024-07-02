@@ -52,7 +52,8 @@ const ReservationSchema = z.object({
   phone_number: z.string(),
   service: z.string(),
   date: z.string(),
-  time: z.string(),
+  session: z.string(),
+  user_id: z.string(),
 });
 
 const CreateReservation = ReservationSchema.omit({ id: true });
@@ -63,7 +64,8 @@ export async function createReservation(formData: FormData) {
     phone_number: formData.get('phone_number'),
     service: formData.get('service'),
     date: formData.get('date'),
-    time: formData.get('time'),
+    session: formData.get('session'),
+    user_id: formData.get('user_id'),
   });
 
   if (!validatedFields.success) {
@@ -73,12 +75,12 @@ export async function createReservation(formData: FormData) {
     };
   }
 
-  const { name, phone_number, service, date, time } = validatedFields.data;
+  const { name, phone_number, service, date, session, user_id } = validatedFields.data;
 
   try {
     await sql`
-      INSERT INTO reservations (name, phone_number, service, date, time)
-      VALUES (${name}, ${phone_number}, ${service}, ${date}, ${time})
+      INSERT INTO reservations (name, phone_number, service, date, session, user_id)
+      VALUES (${name}, ${phone_number}, ${service}, ${date}, ${session}, ${user_id})
     `;
   } catch (error) {
     return {
@@ -86,8 +88,8 @@ export async function createReservation(formData: FormData) {
     };
   }
 
-  revalidatePath('/');
-  redirect('/');
+  revalidatePath(`/dashboard/${user_id}`);
+  redirect(`/dashboard/${user_id}`);
 }
 
 const UserSchema = z.object({

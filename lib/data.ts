@@ -1,6 +1,10 @@
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
-import { ScissorsIcon, HandRaisedIcon, FaceSmileIcon } from '@heroicons/react/24/outline';
+import {
+  ScissorsIcon,
+  HandRaisedIcon,
+  FaceSmileIcon,
+} from '@heroicons/react/24/outline';
 
 export async function fetchReviews() {
   noStore();
@@ -35,6 +39,30 @@ export async function fetchUsers() {
   } catch (error) {
     console.error('Database error:', error);
     throw new Error('Failed to fetch users data.');
+  }
+}
+
+export async function fetchUser(id: string) {
+  noStore();
+  try {
+    const data = await sql`SELECT * FROM users WHERE id = ${id}`;
+
+    return data.rows[0];
+  } catch (error) {
+    console.error('Database error:', error);
+    throw new Error('Failed to fetch user data.');
+  }
+}
+
+export async function fetchUserReservations(id: string) {
+  noStore();
+  try {
+    const data = await sql`SELECT * FROM reservations WHERE user_id = ${id} ORDER BY date DESC`;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database error:', error);
+    throw new Error('Failed to fetch user reservations data.');
   }
 }
 
