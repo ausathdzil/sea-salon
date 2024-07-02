@@ -7,9 +7,9 @@ export default async function Page({ params }: { params: { userId: string } }) {
   const userReservations = await fetchUserReservations(params.userId);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 p-12 w-full">
+    <div className="w-full p-12 flex gap-4">
       <UserCard user={user} />
-      <div className="w-full">
+      <div className="flex flex-col w-full">
         <h1 className="font-bold text-3xl text-center sm:text-left">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
             Reservations

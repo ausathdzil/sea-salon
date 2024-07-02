@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth, BASE_PATH } from './auth';
 
 export const config = {
-  matcher: '/reservations/create',
+  matcher: '/dashboard', 
 };
 
 export default auth((req) => {

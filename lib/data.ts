@@ -66,21 +66,33 @@ export async function fetchUserReservations(id: string) {
   }
 }
 
+export async function fetchServices() {
+  noStore();
+  try {
+    const data = await sql`SELECT * FROM services`;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database error:', error);
+    throw new Error('Failed to fetch services data.');
+  }
+}
+
 export const services = [
   {
     icon: ScissorsIcon,
-    title: 'Haircuts and Styling',
+    name: 'Haircuts and Styling',
     description: 'Experience our expert stylists touch for a perfect haircut.',
   },
   {
     icon: HandRaisedIcon,
-    title: 'Manicures and Pedicures',
+    name: 'Manicures and Pedicures',
     description:
       'Indulge in our luxurious nail treatments for beautiful hands and feet.',
   },
   {
     icon: FaceSmileIcon,
-    title: 'Facial Treatments',
+    name: 'Facial Treatments',
     description:
       'Rejuvenate your skin with our rejuvenating facial treatments.',
   },

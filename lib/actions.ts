@@ -179,10 +179,50 @@ export async function createUser(formData: FormData) {
   redirect('/');
 }
 
-const LoginSchema = z.object({
-  email: z.string(),
-  password: z.string(),
+const ServiceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  duration: z.string(),
+  description: z.string(),
 });
+
+const CreateService = ServiceSchema.omit({ id: true });
+
+export async function createService(formData: FormData, user_id: string) {
+  const validatedFields = CreateService.safeParse({
+    name: formData.get('name'),
+    duration: formData.get('duration'),
+    description: formData.get('description'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Create Service.',
+    };
+  }
+
+  const { name, duration, description } = validatedFields.data;
+
+  try {
+    await sql`
+      INSERT INTO services (name, duration, description)
+      VALUES (${name}, ${duration} ,${description})
+    `;
+  } catch (error) {
+    return {
+      message: 'Database error: Failed to create service.',
+    };
+  }
+
+  revalidatePath(`/dashboard/admin/${user_id}`);
+  redirect(`/dashboard/admin/${user_id}`);
+}
+
+// const LoginSchema = z.object({
+//   email: z.string(),
+//   password: z.string(),
+// });
 
 // export async function login(formData: FormData) {
 //   const validatedFields = LoginSchema.safeParse({

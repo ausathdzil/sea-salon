@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
-export default function ServicesSection() {
+export default async function ServicesSection() {
   return (
     <section className="flex flex-col gap-8 items-center lg:items-start justify-center p-12 w-full">
       <h1 className="text-6xl font-bold">
@@ -25,7 +25,7 @@ export default function ServicesSection() {
           >
             <CardHeader className="gap-4">
               <service.icon className="w-12 h-12" />
-              <CardTitle className="text-pink-500">{service.title}</CardTitle>
+              <CardTitle className="text-pink-500">{service.name}</CardTitle>
               <CardDescription className="text-base">
                 {service.description}
               </CardDescription>
