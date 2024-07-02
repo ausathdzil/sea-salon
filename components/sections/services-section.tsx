@@ -1,4 +1,3 @@
-import { services as services } from '@/lib/data';
 import Link from 'next/link';
 import {
   Card,
@@ -7,8 +6,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { fetchServices } from '@/lib/data';
 
 export default async function ServicesSection() {
+  const services = await fetchServices();
   return (
     <section className="flex flex-col gap-8 items-center lg:items-start justify-center p-12 w-full">
       <h1 className="text-6xl font-bold">
@@ -18,13 +19,13 @@ export default async function ServicesSection() {
         </span>
       </h1>
       <div className="flex flex-col md:flex-row gap-4">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <Card
-            key={index}
+            key={service.id}
             className="shadow-lg border-pink-500 border-2"
           >
             <CardHeader className="gap-4">
-              <service.icon className="w-12 h-12" />
+              {/* <service.icon className="w-12 h-12" /> */}
               <CardTitle className="text-pink-500">{service.name}</CardTitle>
               <CardDescription className="text-base">
                 {service.description}

@@ -1,10 +1,5 @@
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
-import {
-  ScissorsIcon,
-  HandRaisedIcon,
-  FaceSmileIcon,
-} from '@heroicons/react/24/outline';
 
 export async function fetchReviews() {
   noStore();
@@ -57,7 +52,8 @@ export async function fetchUser(id: string) {
 export async function fetchUserReservations(id: string) {
   noStore();
   try {
-    const data = await sql`SELECT * FROM reservations WHERE user_id = ${id} ORDER BY date DESC`;
+    const data =
+      await sql`SELECT * FROM reservations WHERE user_id = ${id} ORDER BY date DESC`;
 
     return data.rows;
   } catch (error) {
@@ -78,37 +74,17 @@ export async function fetchServices() {
   }
 }
 
-export const services = [
-  {
-    icon: ScissorsIcon,
-    name: 'Haircuts and Styling',
-    description: 'Experience our expert stylists touch for a perfect haircut.',
-  },
-  {
-    icon: HandRaisedIcon,
-    name: 'Manicures and Pedicures',
-    description:
-      'Indulge in our luxurious nail treatments for beautiful hands and feet.',
-  },
-  {
-    icon: FaceSmileIcon,
-    name: 'Facial Treatments',
-    description:
-      'Rejuvenate your skin with our rejuvenating facial treatments.',
-  },
-];
-
 export const sessions = [
-  '09:00 - 10:00',
-  '10:00 - 11:00',
-  '11:00 - 12:00',
-  '12:00 - 13:00',
-  '13:00 - 14:00',
-  '14:00 - 15:00',
-  '15:00 - 16:00',
-  '16:00 - 17:00',
-  '17:00 - 18:00',
-  '18:00 - 19:00',
-  '19:00 - 20:00',
-  '20:00 - 21:00',
+  '09:00',
+  '10:00',
+  '11:00',
+  '12:00',
+  '13:00',
+  '14:00',
+  '15:00',
+  '16:00',
+  '17:00',
+  '18:00',
+  '19:00',
+  '20:00',
 ];

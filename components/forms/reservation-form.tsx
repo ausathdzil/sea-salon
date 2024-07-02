@@ -22,7 +22,6 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
-import { services as services } from '@/lib/data';
 import {
   Popover,
   PopoverTrigger,
@@ -49,8 +48,10 @@ const formSchema = z.object({
 
 export default function ReservationForm({
   userId,
+  services,
 }: {
   userId: string | undefined;
+  services: any[];
 }) {
   const [isPending, startTransition] = useTransition();
 
@@ -144,9 +145,9 @@ export default function ReservationForm({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {services.map((service, index) => (
+                  {services.map((service) => (
                     <SelectItem
-                      key={index}
+                      key={service.id}
                       value={service.name}
                     >
                       {service.name}

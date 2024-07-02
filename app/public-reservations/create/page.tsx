@@ -1,10 +1,11 @@
-import { fetchUser } from '@/lib/data';
+import { fetchServices } from '@/lib/data';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import PublicReservationForm from '@/components/forms/public-reservation-form';
 
 export default async function Page() {
+  const services = await fetchServices();
   return (
     <div className="bg-zinc-50 text-zinc-950 p-12 px-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">
       <Card className="lg:w-full border-2 border-pink-500">
@@ -20,7 +21,7 @@ export default async function Page() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <PublicReservationForm />
+          <PublicReservationForm services={services} />
         </CardContent>
       </Card>
     </div>
