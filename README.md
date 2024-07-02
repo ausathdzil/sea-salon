@@ -16,12 +16,14 @@ A salon web application as part of [COMPFEST Academy](https://compfest.id/academ
 
 ## Demo
 
-[SEA Salon](https://sea-salon-ausath.vercel.app)
+- [SEA Salon](https://sea-salon-ausath.vercel.app)
+- User dashboard currently doesn't work on the live demo. Clone this project on your machine to view it.
 
 
 ## Features
 
 - User authentication
+- User dashboard (doesn't work on production)
 - Reviews section
 - Reservation system
 
@@ -55,5 +57,16 @@ Start the server
 
 ## Vercel Postgres Database Integration
 
-Follow the [quickstart guide](https://vercel.com/docs/storage/vercel-postgres/quickstart#create-a-postgres-database).
+- Follow the [quickstart guide](https://vercel.com/docs/storage/vercel-postgres/quickstart#create-a-postgres-database).
 
+## Enviroment Variables
+POSTGRES_URL=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL_NO_SSL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_USER=""
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_DATABASE=""
+
+NEXTAUTH_SECRET=
