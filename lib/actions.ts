@@ -219,6 +219,20 @@ export async function createService(formData: FormData, user_id: string) {
   redirect(`/dashboard/admin/${user_id}`);
 }
 
+export async function deleteService(service_id: string, user_id: string) {
+  try {
+    await sql`
+      DELETE FROM services WHERE id = ${service_id}
+    `;
+  } catch (error) {
+    return {
+      message: 'Database error: Failed to delete service.',
+    };
+  }
+
+  revalidatePath(`/dashboard/admin/${user_id}`);
+}
+
 // const LoginSchema = z.object({
 //   email: z.string(),
 //   password: z.string(),

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Table,
   TableBody,
@@ -6,8 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { deleteService } from '@/lib/actions';
 
-export default function ServicesTable({ services }: { services: any }) {
+export default function ServicesTable({
+  services,
+  userId,
+}: {
+  services: any[];
+  userId: string;
+}) {
   return (
     <Table>
       <TableHeader>
@@ -15,6 +24,7 @@ export default function ServicesTable({ services }: { services: any }) {
           <TableHead>Name</TableHead>
           <TableHead>Duration</TableHead>
           <TableHead>Description</TableHead>
+          <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -23,6 +33,16 @@ export default function ServicesTable({ services }: { services: any }) {
             <TableCell>{service.name}</TableCell>
             <TableCell>{service.duration}</TableCell>
             <TableCell>{service.description}</TableCell>
+            <TableCell className="flex gap-2">
+              <button
+                onClick={async () => {
+                  await deleteService(service.id, userId);
+                }}
+                className="text-red-500"
+              >
+                Delete
+              </button>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

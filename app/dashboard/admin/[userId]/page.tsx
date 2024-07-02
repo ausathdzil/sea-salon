@@ -41,7 +41,10 @@ export default async function Page() {
           </Link>
         </div>
         <div className="rounded-md border border-pink-500 shadow-lg min-h-[80vh] mt-2">
-          <ServicesTable services={services} />
+          <ServicesTable
+            services={services}
+            userId={user.id}
+          />
         </div>
       </div>
     </div>
