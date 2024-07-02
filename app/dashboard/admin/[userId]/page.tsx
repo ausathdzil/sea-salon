@@ -4,9 +4,20 @@ import ServicesTable from '@/components/admin/services-table';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { SquaresPlusIcon } from '@heroicons/react/24/outline';
+import { auth } from '@/auth';
 
-export default async function Page({ params }: { params: { userId: string } }) {
-  const user = await fetchUser(params.userId);
+export default async function Page() {
+  const session = await auth();
+
+  if (session && session.user) {
+    session.user = {
+      id: session.user.id,
+      name: session.user.name,
+      email: session.user.email,
+    };
+  }
+
+  const user = await fetchUser(session?.user?.id as string);
   const services = await fetchServices();
 
   return (

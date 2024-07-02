@@ -3,10 +3,20 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import ReservationForm from '@/components/forms/reservation-form';
+import { auth } from '@/auth';
 
-export default async function Page({ params }: { params: { userId: string } }) {
-  const id = params.userId;
-  const user = await fetchUser(id);
+export default async function Page() {
+  const session = await auth();
+
+  if (session && session.user) {
+    session.user = {
+      id: session.user.id,
+      name: session.user.name,
+      email: session.user.email,
+    };
+  }
+
+  const user = await fetchUser(session?.user?.id as string);
 
   return (
     <div className="bg-zinc-50 text-zinc-950 p-12 px-8 sm:px-24 flex flex-col justify-center w-full items-center gap-4">

@@ -7,6 +7,7 @@ export default async function AuthButton() {
 
   if (session && session.user) {
     session.user = {
+      id: session.user.id,
       name: session.user.name,
       email: session.user.email,
     };
