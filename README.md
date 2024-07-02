@@ -59,14 +59,24 @@ Start the server
 
 - Follow the [quickstart guide](https://vercel.com/docs/storage/vercel-postgres/quickstart#create-a-postgres-database).
 
-## Enviroment Variables
-POSTGRES_URL=""
-POSTGRES_PRISMA_URL=""
-POSTGRES_URL_NO_SSL=""
-POSTGRES_URL_NON_POOLING=""
-POSTGRES_USER=""
-POSTGRES_HOST=""
-POSTGRES_PASSWORD=""
-POSTGRES_DATABASE=""
+## Environment Variables
 
-NEXTAUTH_SECRET=
+To run this project locally, you will need to add the following environment variables to your .env.development.local file
+
+`POSTGRES_URL`
+
+`POSTGRES_PRISMA_URL`
+
+`POSTGRES_URL_NO_SSL`
+
+`POSTGRES_URL_NON_POOLING`
+
+`POSTGRES_USER`
+
+`POSTGRES_HOST`
+
+`POSTGRES_PASSWORD`
+
+`POSTGRES_DATABASE`
+
+`NEXTAUTH_SECRET`
