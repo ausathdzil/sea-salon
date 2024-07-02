@@ -33,15 +33,13 @@ export default function ServicesSection() {
           </Card>
         ))}
       </div>
-      <h1 className="text-2xl font-bold w-full text-right">
-        <Link
-          href="/signin"
-          className="flex items-center justify-end gap-2 hover:text-pink-500"
-        >
-          Sign In to Create a Reservation
-          <ArrowRightIcon className="w-5 h-5" />
-        </Link>
-      </h1>
+      <Link
+        href="/public-reservations/create"
+        className="flex justify-end items-center gap-2 text-xl hover:text-pink-500 w-full"
+      >
+        <p>Create a Reservation</p>
+        <ArrowRightIcon className="w-5 h-5" />
+      </Link>
     </section>
   );
 }

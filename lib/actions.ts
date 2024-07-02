@@ -75,7 +75,8 @@ export async function createReservation(formData: FormData) {
     };
   }
 
-  const { name, phone_number, service, date, session, user_id } = validatedFields.data;
+  const { name, phone_number, service, date, session, user_id } =
+    validatedFields.data;
 
   try {
     await sql`
@@ -90,6 +91,49 @@ export async function createReservation(formData: FormData) {
 
   revalidatePath(`/dashboard/${user_id}`);
   redirect(`/dashboard/${user_id}`);
+}
+
+const PublicReservationSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  phone_number: z.string(),
+  service: z.string(),
+  date: z.string(),
+  session: z.string(),
+});
+
+const CreatePublicReservation = PublicReservationSchema.omit({ id: true });
+
+export async function createPublicReservation(formData: FormData) {
+  const validatedFields = CreatePublicReservation.safeParse({
+    name: formData.get('name'),
+    phone_number: formData.get('phone_number'),
+    service: formData.get('service'),
+    date: formData.get('date'),
+    session: formData.get('session'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Create Reservation.',
+    };
+  }
+
+  const { name, phone_number, service, date, session } = validatedFields.data;
+
+  try {
+    await sql`
+      INSERT INTO public_reservations (name, phone_number, service, date, session)
+      VALUES (${name}, ${phone_number}, ${service}, ${date}, ${session})
+    `;
+  } catch (error) {
+    return {
+      message: 'Database error: Failed to create reservation.',
+    };
+  }
+
+  redirect(`/`);
 }
 
 const UserSchema = z.object({
@@ -132,7 +176,6 @@ export async function createUser(formData: FormData) {
     };
   }
 
-  revalidatePath('/');
   redirect('/');
 }
 
@@ -141,30 +184,30 @@ const LoginSchema = z.object({
   password: z.string(),
 });
 
-export async function login(formData: FormData) {
-  const validatedFields = LoginSchema.safeParse({
-    email: formData.get('email'),
-    password: formData.get('password'),
-  });
+// export async function login(formData: FormData) {
+//   const validatedFields = LoginSchema.safeParse({
+//     email: formData.get('email'),
+//     password: formData.get('password'),
+//   });
 
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Login.',
-    };
-  }
+//   if (!validatedFields.success) {
+//     return {
+//       errors: validatedFields.error.flatten().fieldErrors,
+//       message: 'Missing Fields. Failed to Login.',
+//     };
+//   }
 
-  const { email, password } = validatedFields.data;
+//   const { email, password } = validatedFields.data;
 
-  try {
-    await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
-  } catch (error) {
-    return {
-      message: 'Database error: Failed to login.',
-    };
-  }
-}
+//   try {
+//     await signIn('credentials', {
+//       email,
+//       password,
+//       redirect: false,
+//     });
+//   } catch (error) {
+//     return {
+//       message: 'Database error: Failed to login.',
+//     };
+//   }
+// }

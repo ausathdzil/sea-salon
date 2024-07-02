@@ -1,39 +1,10 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import UserCard from '@/components/user/user-card';
 import ReservationsTable from '@/components/user/user-reservations-table';
+import { fetchUser, fetchUserReservations } from '@/lib/data';
 
-export default function Page({ params }: { params: { userId: string } }) {
-  const [user, setUser] = useState(null);
-  const [userReservations, setUserReservations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const userResponse = await fetch(`/api/users/${params.userId}`);
-        const userData = await userResponse.json();
-        setUser(userData);
-
-        const reservationsResponse = await fetch(
-          `/api/users/${params.userId}/reservations`
-        );
-        const reservationsData = await reservationsResponse.json();
-        setUserReservations(reservationsData);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, [params.userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+export default async function Page({ params }: { params: { userId: string } }) {
+  const user = await fetchUser(params.userId);
+  const userReservations = await fetchUserReservations(params.userId);
 
   return (
     <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 p-12 w-full">
