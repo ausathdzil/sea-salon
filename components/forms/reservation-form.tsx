@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { createReservation } from '@/lib/actions';
 
 import {
@@ -47,7 +47,11 @@ const formSchema = z.object({
   user_id: z.string(),
 });
 
-export default function ReservationForm( { userId }: { userId: string | undefined } ) {
+export default function ReservationForm({
+  userId,
+}: {
+  userId: string | undefined;
+}) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -143,9 +147,9 @@ export default function ReservationForm( { userId }: { userId: string | undefine
                   {services.map((service, index) => (
                     <SelectItem
                       key={index}
-                      value={service.title}
+                      value={service.name}
                     >
-                      {service.title}
+                      {service.name}
                     </SelectItem>
                   ))}
                 </SelectContent>

@@ -14,7 +14,6 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
-import { signOut } from '@/auth/helpers';
 
 export default function UserCard({ user }: { user: any }) {
   const pathname = usePathname();
@@ -54,19 +53,7 @@ export default function UserCard({ user }: { user: any }) {
         >
           <Button className="w-full">Create a reservation</Button>
         </Link>
-        {userRole === 'Admin' && !pathname.includes('admin') ? (
-          <Link
-            className="w-full"
-            href={`/dashboard/admin/${user.id}`}
-          >
-            <Button
-              variant="outline"
-              className="w-full border-zinc-950"
-            >
-              Admin dashboard
-            </Button>
-          </Link>
-        ) : (
+        {pathname.startsWith('/dashboard/admin') ? (
           <>
             <Link
               className="w-full"
@@ -74,7 +61,7 @@ export default function UserCard({ user }: { user: any }) {
             >
               <Button
                 variant="outline"
-                className="w-full border-pink-500 text-pink-500 hover:text-pink-600"
+                className="w-full border-zinc-950"
               >
                 User dashboard
               </Button>
@@ -102,7 +89,19 @@ export default function UserCard({ user }: { user: any }) {
               </Button>
             </Link>
           </>
-        )}
+        ) : userRole === 'Admin' ? (
+          <Link
+            className="w-full"
+            href={`/dashboard/admin/${user.id}`}
+          >
+            <Button
+              variant="outline"
+              className="w-full border-pink-500 text-pink-500 hover:text-pink-600"
+            >
+              Admin dashboard
+            </Button>
+          </Link>
+        ) : null}
         <Link
           className="w-full"
           href={`/`}
@@ -114,16 +113,6 @@ export default function UserCard({ user }: { user: any }) {
             Home
           </Button>
         </Link>
-        <Button
-          onClick={async () => {
-            await signOut();
-            window.location.href = '/';
-          }}
-          className="w-full"
-          variant="destructive"
-        >
-          Sign Out
-        </Button>
       </CardFooter>
     </Card>
   );

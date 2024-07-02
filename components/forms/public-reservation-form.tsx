@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { createPublicReservation } from '@/lib/actions';
 
 import {
@@ -140,9 +140,9 @@ export default function PublicReservationForm() {
                   {services.map((service, index) => (
                     <SelectItem
                       key={index}
-                      value={service.title}
+                      value={service.name}
                     >
-                      {service.title}
+                      {service.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
