@@ -17,13 +17,14 @@ A salon web application as part of [COMPFEST Academy](https://compfest.id/academ
 ## Demo
 
 - [SEA Salon](https://sea-salon-ausath.vercel.app)
-- User dashboard currently doesn't work on the live demo. Clone this project on your machine to view it.
+- User and admin dashboard currently doesn't work on the live demo. Clone this project on your machine to view it.
 
 
 ## Features
 
 - User authentication
 - User dashboard (doesn't work on production)
+- Admin dashboard (doesn't work on production)
 - Reviews section
 - Reservation system
 

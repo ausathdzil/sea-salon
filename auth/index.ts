@@ -1,6 +1,6 @@
 import NextAuth, { User, NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { fetchUsers } from '@/lib/data';
+import { fetchUser, fetchUsers } from '@/lib/data';
 
 export const BASE_PATH = '/api/auth';
 
@@ -39,11 +39,18 @@ const authOptions: NextAuthConfig = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id as string;
+      const user = await fetchUser(token.id as string);
+      if (user) {
+        session.user.id = user.id;
+        session.user.name = user.name;
+        session.user.email = user.email;
+      }
       return session;
     },
   },
