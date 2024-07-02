@@ -1,11 +1,26 @@
+'use client'
+
 import { fetchUser, fetchUserReservations } from '@/lib/data';
 import UserCard from '@/components/user/user-card';
 import ReservationsTable from '@/components/user/user-reservations-table';
+import { useEffect, useState } from 'react';
+import { QueryResultRow } from '@vercel/postgres';
 
-export default async function Page({ params }: { params: { userId: string } }) {
+export default function Page({ params }: { params: { userId: string } }) {
   const id = params.userId;
-  const user = await fetchUser(id);
-  const userReservations = await fetchUserReservations(id);
+  const [user, setUser] = useState<QueryResultRow | null>(null);
+  const [userReservations, setUserReservations] = useState<QueryResultRow[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const userData = await fetchUser(id);
+      const userReservationsData = await fetchUserReservations(id);
+      setUser(userData);
+      setUserReservations(userReservationsData);
+    }
+
+    fetchData();
+  })
 
   return (
     <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 p-12 w-full">
