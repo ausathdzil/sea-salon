@@ -21,7 +21,7 @@ export default async function Page() {
   );
 
   return (
-    <div className="w-full p-12 flex gap-4">
+    <div className="w-full p-12 flex flex-col sm:flex-row gap-4">
       <UserCard user={user} />
       <div className="flex flex-col w-full">
         <h1 className="font-bold text-3xl text-center sm:text-left">

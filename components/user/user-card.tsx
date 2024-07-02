@@ -61,7 +61,7 @@ export default function UserCard({ user }: { user: any }) {
             >
               <Button
                 variant="outline"
-                className="w-full border-zinc-950"
+                className="w-full border-pink-500 text-pink-500 hover:text-pink-600"
               >
                 User dashboard
               </Button>
@@ -96,7 +96,7 @@ export default function UserCard({ user }: { user: any }) {
           >
             <Button
               variant="outline"
-              className="w-full border-pink-500 text-pink-500 hover:text-pink-600"
+              className="w-full border-zinc-950"
             >
               Admin dashboard
             </Button>

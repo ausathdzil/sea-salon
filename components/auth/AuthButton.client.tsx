@@ -73,7 +73,7 @@ export default function AuthButton() {
                     Are you sure you want to sign out?
                   </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="flex">
+                <DialogFooter className="flex gap-4">
                   <DialogClose asChild>
                     <Button className="w-full">Cancel</Button>
                   </DialogClose>
