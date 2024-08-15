@@ -14,11 +14,6 @@ A salon web application as part of [COMPFEST Academy](https://compfest.id/academ
 - [zod](https://github.com/colinhacks/zod)
 
 
-## Demo
-
-- [SEA Salon](https://sea-salon-ausath.vercel.app)
-
-
 ## Features
 
 - User authentication
